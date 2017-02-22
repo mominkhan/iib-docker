@@ -64,7 +64,7 @@ vframe()
 }
 
 iib-license-check.sh
-vframe
+#vframe
 start
 trap stop SIGTERM SIGINT
 monitor
