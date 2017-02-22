@@ -11,13 +11,13 @@ MAINTAINER Sam Rogers srogers@uk.ibm.com
 
 # Install curl
 RUN apt-get update && \
-    apt-get install -y curl && \
+    apt-get install -y curl xvfb libgtk2.0-0 libXtst6 && \
     rm -rf /var/lib/apt/lists/*
 
 # Install IIB V10 Developer edition
 RUN mkdir /opt/ibm && \
     curl http://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/integration/10.0.0.7-IIB-LINUX64-DEVELOPER.tar.gz \
-    | tar zx --exclude iib-10.0.0.7/tools --directory /opt/ibm && \
+    | tar zx --directory /opt/ibm && \
     /opt/ibm/iib-10.0.0.7/iib make registry global accept license silently
 
 # Configure system
@@ -46,6 +46,8 @@ RUN chmod +rx /usr/local/bin/*.sh
 
 # Set BASH_ENV to source mqsiprofile when using docker exec bash -c
 ENV BASH_ENV=/usr/local/bin/iib_env.sh
+
+ENV DISPLAY=:100
 
 # Expose default admin port and http port
 EXPOSE 4414 7800
