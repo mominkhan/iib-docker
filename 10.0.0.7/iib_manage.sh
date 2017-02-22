@@ -52,7 +52,7 @@ monitor()
 	done
 }
 
-vframe()
+runXvfb()
 {
 	echo "----------------------------------------"
 	echo "Running - xvfb in background"
@@ -64,7 +64,7 @@ vframe()
 }
 
 iib-license-check.sh
-#vframe
+runXvfb
 start
 trap stop SIGTERM SIGINT
 monitor
