@@ -56,16 +56,15 @@ vframe()
 {
 	echo "----------------------------------------"
 	echo "Running - xvfb in background"
-	if pgrep -x "Xvfb" > /dev/null
+	if ! pgrep -x "Xvfb" > /dev/null
 	then
-		echo "Skipping Xvfb start as it is already running in background"
-	else
 		echo "Starting Xvfb in background"
 		nohup Xvfb ${DISPLAY} > /dev/null 2>&1 &
 	fi
 }
 
 iib-license-check.sh
+vframe
 start
 trap stop SIGTERM SIGINT
 monitor
