@@ -55,10 +55,10 @@ monitor()
 runXvfb()
 {
 	echo "----------------------------------------"
-	echo "Running - xvfb in background"
+	# Run - xvfb in background
 	if ! pgrep -x "Xvfb" > /dev/null
 	then
-		echo "Starting Xvfb in background"
+		echo "Running - xvfb in background"
 		nohup Xvfb ${DISPLAY} > /dev/null 2>&1 &
 	fi
 }
